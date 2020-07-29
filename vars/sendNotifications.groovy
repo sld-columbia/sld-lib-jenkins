@@ -39,7 +39,6 @@ def call(String buildStatus = 'STARTED') {
 
     def subject = "${env.JOB_NAME} - #${env.BUILD_NUMBER}:\n" +
 	"${postStatus}.\n" +
-	"${buildCauses}\n" +
 	"(<${env.RUN_DISPLAY_URL}|Open>) (<${env.RUN_CHANGES_DISPLAY_URL}|Changes>)"
 
     // Send notifications
