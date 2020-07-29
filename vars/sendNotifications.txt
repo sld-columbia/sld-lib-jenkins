@@ -1,4 +1,4 @@
-<strong>sendNotifications(buildStatus='STARTED')</strong>
+<strong>sendNotifications(buildStatus='STARTED', durationString = 'NULL')</strong>
 
 <p>
     Sends notifications via HipChat, Slack, and email.
