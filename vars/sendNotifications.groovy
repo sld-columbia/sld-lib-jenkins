@@ -10,8 +10,9 @@ def call(String buildStatus = 'STARTED') {
     buildCauses = currentBuild.getBuildCauses()
     for(cause in buildCauses) {
         causeString = cause.class.toString()
+	break
     }
-    
+
     // Default values
     def colorCode = 'good'
     def branchName = "${env.BRANCH_NAME}"
