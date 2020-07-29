@@ -8,6 +8,9 @@ def call(String buildStatus = 'STARTED') {
     buildStatus =  buildStatus ?: 'SUCCESS'
     durationString = currentBuild.durationString
     buildCauses = currentBuild.getBuildCauses()
+    for(cause in buildCauses) {
+        causeString = cause.class.toString()
+    }
     
     // Default values
     def colorCode = 'good'
@@ -22,7 +25,7 @@ def call(String buildStatus = 'STARTED') {
     // Override default values based on build status
     if (buildStatus == 'STARTED') {
 	colorCode = 'good'
-	postStatus = buildCauses.toString()
+	postStatus = causeString
 	
     } else if (buildStatus == 'SUCCESS') {
 	colorCode = 'good'
