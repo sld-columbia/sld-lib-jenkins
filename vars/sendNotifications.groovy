@@ -35,7 +35,7 @@ def call(String buildStatus = 'STARTED', String durationString = 'NULL') {
 	postStatus = 'Failure after ${durationString}'
     }
 
-    def subject = "${env.JOB_NAME} - #${env.BUILD_NUMBER} ${postStatus} (<${env.RUN_DISPLAY_URL}|Open>) (<${env.RUN_CHANGES_DISPLAY_URL}|  Changes>). Branch: ${branchName}. Status: ${buildStatus}."
+    def subject = "${env.JOB_NAME} - #${env.BUILD_NUMBER} ${postStatus} (<${env.RUN_DISPLAY_URL}|Open>) (<${env.RUN_CHANGES_DISPLAY_URL}|  Changes>). Branch: ${branchName}. Status: ${buildStatus}. Duration: ${durationString}"
     
     // Send notifications
     slackSend (color: colorCode, message: subject)
