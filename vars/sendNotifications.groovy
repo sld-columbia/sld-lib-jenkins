@@ -9,7 +9,7 @@ def call(String buildStatus = 'STARTED') {
     durationString = currentBuild.durationString
     buildCauses = currentBuild.getBuildCauses()
     for(cause in buildCauses) {
-        causeString = cause.class.toString()
+        causeString = cause.toString()
 	break
     }
 
