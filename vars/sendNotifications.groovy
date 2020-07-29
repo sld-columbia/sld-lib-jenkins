@@ -3,11 +3,12 @@
 /**
  * Send notifications based on build status string
  */
-def call(String buildStatus = 'STARTED', String durationString = 'NULL') {
+def call(String buildStatus = 'STARTED') {
     // build status of null means successful
     buildStatus =  buildStatus ?: 'SUCCESS'
     durationString = currentBuild.durationString
-
+    buildCauses = currentBuild.getBuildCauses()
+    
     // Default values
     def colorCode = 'good'
     def branchName = "${env.BRANCH_NAME}"
@@ -38,6 +39,7 @@ def call(String buildStatus = 'STARTED', String durationString = 'NULL') {
 
     def subject = "${env.JOB_NAME} - #${env.BUILD_NUMBER}:\n" +
 	"${postStatus}.\n" +
+	"${buildCauses}\n" +
 	"(<${env.RUN_DISPLAY_URL}|Open>) (<${env.RUN_CHANGES_DISPLAY_URL}|Changes>)"
 
     // Send notifications
