@@ -14,8 +14,8 @@ def call(String buildStatus = 'STARTED', String durationString = 'NULL') {
     def author = sh(returnStdout: true, script: "git --no-pager show -s --format='%an'").trim()
     // def message = sh(returnStdout: true, script: 'git log -1 --pretty=%B').trim()
     // def summary = "${subject} (${env.BUILD_URL})"
-    def details = """<p>${buildStatus}: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]':</p>
-    <p>Check console output at &QUOT;<a href='${env.BUILD_URL}'>${env.JOB_NAME} [${env.BUILD_NUMBER}]</a>&QUOT;</p>"""
+    // def details = """<p>${buildStatus}: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]':</p>
+    // <p>Check console output at &QUOT;<a href='${env.BUILD_URL}'>${env.JOB_NAME} [${env.BUILD_NUMBER}]</a>&QUOT;</p>"""
 
     // Override default values based on build status
     if (buildStatus == 'STARTED') {
@@ -35,8 +35,11 @@ def call(String buildStatus = 'STARTED', String durationString = 'NULL') {
 	postStatus = "Failure after ${durationString}"
     }
 
-    def subject = "${env.JOB_NAME} - #${env.BUILD_NUMBER} ${postStatus} (<${env.RUN_DISPLAY_URL}|Open>) (<${env.RUN_CHANGES_DISPLAY_URL}|  Changes>). Branch: ${branchName}. Status: ${buildStatus}. Duration: ${durationString}"
-    
+    // def subject = "${env.JOB_NAME} - #${env.BUILD_NUMBER} ${postStatus} (<${env.RUN_DISPLAY_URL}|Open>) (<${env.RUN_CHANGES_DISPLAY_URL}|  Changes>). Branch: ${branchName}. Status: ${buildStatus}."
+
+    def subject = """<p> ${env.JOB_NAME} - #${env.BUILD_NUMBER} - branch: ${branchName}.  </p>
+                     <p> ${postStatus} (<${env.RUN_DISPLAY_URL}|Open>) (<${env.RUN_CHANGES_DISPLAY_URL}|  Changes>). </p>"""
+
     // Send notifications
     slackSend (color: colorCode, message: subject)
 
