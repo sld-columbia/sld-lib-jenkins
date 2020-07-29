@@ -22,7 +22,7 @@ def call(String buildStatus = 'STARTED') {
     // Override default values based on build status
     if (buildStatus == 'STARTED') {
 	colorCode = 'good'
-	postStatus = 'Started'
+	postStatus = buildCauses.toString()
 	
     } else if (buildStatus == 'SUCCESS') {
 	colorCode = 'good'
