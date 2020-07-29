@@ -3,14 +3,10 @@
 /**
  * Send notifications based on build status string
  */
-// def call(String buildStatus = 'STARTED', String durationString = 'NULL') {
-def call(RunWrapper currentBuild) {
-
-    String buildStatus = currentBuild.buildStatus
-    String durationString = currentBuild.currentBuild
-
+def call(String buildStatus = 'STARTED', String durationString = 'NULL') {
     // build status of null means successful
-    buildStatus =  buildStatus ?: 'SUCCESSFUL'
+    buildStatus =  buildStatus ?: 'SUCCESS'
+    durationString = currentBuild.durationString
 
     // Default values
     def colorCode = 'good'
