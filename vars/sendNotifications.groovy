@@ -22,7 +22,7 @@ def call(String buildStatus = 'STARTED') {
 	colorCode = 'good'
 	postStatus = 'Started'
 	
-    } else if (buildStatus == 'SUCCESSFUL') {
+    } else if (buildStatus == 'SUCCESS') {
 	colorCode = 'good'
 	postStatus = 'Success'
 
