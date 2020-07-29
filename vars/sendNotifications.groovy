@@ -24,15 +24,15 @@ def call(String buildStatus = 'STARTED', String durationString = 'NULL') {
 	
     } else if (buildStatus == 'SUCCESS') {
 	colorCode = 'good'
-	postStatus = 'Success after ${durationString}'
+	postStatus = "Success after ${durationString}"
 
     } else if (buildStatus == 'UNSTABLE') {
 	colorCode = 'warning'
-	postStatus = 'Unstable after ${durationString}'
+	postStatus = "Unstable after ${durationString}"
 
     } else {
 	colorCode = 'danger'
-	postStatus = 'Failure after ${durationString}'
+	postStatus = "Failure after ${durationString}"
     }
 
     def subject = "${env.JOB_NAME} - #${env.BUILD_NUMBER} ${postStatus} (<${env.RUN_DISPLAY_URL}|Open>) (<${env.RUN_CHANGES_DISPLAY_URL}|  Changes>). Branch: ${branchName}. Status: ${buildStatus}. Duration: ${durationString}"
